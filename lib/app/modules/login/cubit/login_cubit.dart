@@ -17,5 +17,11 @@ class LoginCubit extends Cubit<LoginState> {
   ) : super(LoginState.initial());
 
 
+  Future<void> login(String login, String password) async {
+    emit(state.copyWith(loading: true, authFailureOrSuccessOption: none()));
+    final result = await _service.login(login, password);
+    emit(state.copyWith(loading: false, authFailureOrSuccessOption: optionOf(result)));
+  }
+
 
 }

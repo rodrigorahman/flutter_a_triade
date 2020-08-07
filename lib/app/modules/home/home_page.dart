@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -14,7 +16,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,
-        overflow: Overflow.visible,
         children: <Widget>[
           Image.asset(
             'lib/assets/tdc_fundo.jpeg',
@@ -23,12 +24,35 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(color: Colors.black54),
           Container(
-              padding: EdgeInsets.only(top: 50),
-              child: Image.asset(
-                'lib/assets/tdc.png',
-                width: 300,
-              ),
+            padding: EdgeInsets.only(top: 50),
+            child: Image.asset(
+              'lib/assets/tdc.png',
+              width: 300,
             ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'SUCESSO!!!!!',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                FlatButton(
+                  onPressed: () async {
+                    final sp = await SharedPreferences.getInstance();
+                    sp.clear();
+                    Modular.to.pushNamedAndRemoveUntil('/', (_) => false);
+                  },
+                  child: Text(
+                    'SAIR',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

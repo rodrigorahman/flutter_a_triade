@@ -14,13 +14,9 @@ class _$LoginStateTearOff {
 
 // ignore: unused_element
   _LoginState call(
-      {@required String login,
-      @required String password,
-      @required bool loading,
+      {@required bool loading,
       @required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _LoginState(
-      login: login,
-      password: password,
       loading: loading,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
     );
@@ -31,8 +27,6 @@ class _$LoginStateTearOff {
 const $LoginState = _$LoginStateTearOff();
 
 mixin _$LoginState {
-  String get login;
-  String get password;
   bool get loading;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
 
@@ -44,9 +38,7 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
   $Res call(
-      {String login,
-      String password,
-      bool loading,
+      {bool loading,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
 
@@ -59,14 +51,10 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object login = freezed,
-    Object password = freezed,
     Object loading = freezed,
     Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      login: login == freezed ? _value.login : login as String,
-      password: password == freezed ? _value.password : password as String,
       loading: loading == freezed ? _value.loading : loading as bool,
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
@@ -81,9 +69,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       __$LoginStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String login,
-      String password,
-      bool loading,
+      {bool loading,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
 }
 
@@ -98,14 +84,10 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object login = freezed,
-    Object password = freezed,
     Object loading = freezed,
     Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_LoginState(
-      login: login == freezed ? _value.login : login as String,
-      password: password == freezed ? _value.password : password as String,
       loading: loading == freezed ? _value.loading : loading as bool,
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
@@ -116,19 +98,10 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 class _$_LoginState implements _LoginState {
   _$_LoginState(
-      {@required this.login,
-      @required this.password,
-      @required this.loading,
-      @required this.authFailureOrSuccessOption})
-      : assert(login != null),
-        assert(password != null),
-        assert(loading != null),
+      {@required this.loading, @required this.authFailureOrSuccessOption})
+      : assert(loading != null),
         assert(authFailureOrSuccessOption != null);
 
-  @override
-  final String login;
-  @override
-  final String password;
   @override
   final bool loading;
   @override
@@ -136,18 +109,13 @@ class _$_LoginState implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(login: $login, password: $password, loading: $loading, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'LoginState(loading: $loading, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoginState &&
-            (identical(other.login, login) ||
-                const DeepCollectionEquality().equals(other.login, login)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
             (identical(other.loading, loading) ||
                 const DeepCollectionEquality()
                     .equals(other.loading, loading)) &&
@@ -161,8 +129,6 @@ class _$_LoginState implements _LoginState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(login) ^
-      const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(loading) ^
       const DeepCollectionEquality().hash(authFailureOrSuccessOption);
 
@@ -174,19 +140,11 @@ class _$_LoginState implements _LoginState {
 abstract class _LoginState implements LoginState {
   factory _LoginState(
           {@required
-              String login,
-          @required
-              String password,
-          @required
               bool loading,
           @required
               Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) =
       _$_LoginState;
 
-  @override
-  String get login;
-  @override
-  String get password;
   @override
   bool get loading;
   @override
