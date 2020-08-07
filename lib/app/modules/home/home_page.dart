@@ -12,11 +12,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
+      body: Stack(
+        alignment: Alignment.topCenter,
+        overflow: Overflow.visible,
+        children: <Widget>[
+          Image.asset(
+            'lib/assets/tdc_fundo.jpeg',
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Container(color: Colors.black54),
+          Container(
+              padding: EdgeInsets.only(top: 50),
+              child: Image.asset(
+                'lib/assets/tdc.png',
+                width: 300,
+              ),
+            ),
+        ],
       ),
     );
   }

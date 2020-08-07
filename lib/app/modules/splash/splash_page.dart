@@ -10,21 +10,34 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     Future.delayed(Duration.zero, () => Modular.to.pushNamedAndRemoveUntil('/login', (_) => false));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
+      body: Stack(
+        alignment: Alignment.topCenter,
+        overflow: Overflow.visible,
+        children: <Widget>[
+          Image.asset(
+            'lib/assets/tdc_fundo.jpeg',
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Container(color: Colors.black54),
+          Container(
+              padding: EdgeInsets.only(top: 50),
+              child: Image.asset(
+                'lib/assets/tdc.png',
+                width: 300,
+              ),
+            ),
+        ],
       ),
     );
   }
