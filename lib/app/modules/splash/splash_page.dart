@@ -3,25 +3,25 @@ import 'package:flutter_a_triade/app/shared/cubit/auth_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class SplashPage extends StatefulWidget {
-  final String title;
-  const SplashPage({Key key, this.title = "Splash"}) : super(key: key);
-
+class SplashPage extends StatelessWidget {
   @override
-  _SplashPageState createState() => _SplashPageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(''),
+      ),
+      body: BlocProvider(
+        create: (context) => Modular.get<AuthCubit>()..checkUserLogged(),
+        child: SplashContentPage(),
+      ),
+    );
+  }
 }
 
-class _SplashPageState extends State<SplashPage> {
-  @override
-  void initState() {
-    super.initState();
-    Modular.get<AuthCubit>().checkUserLogged();
-  }
-
+class SplashContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
-      cubit: Modular.get<AuthCubit>(),
       listener: (context, state) {
         state.when(
           initial: () {},
@@ -47,7 +47,6 @@ class _SplashPageState extends State<SplashPage> {
                 width: 300,
               ),
             ),
-            
           ],
         ),
       ),

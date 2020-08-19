@@ -1,4 +1,6 @@
+import 'package:flutter_a_triade/app/repositories/i_user_repository.dart';
 import 'package:flutter_a_triade/app/repositories/user_repository.dart';
+import 'package:flutter_a_triade/app/services/i_user_service.dart';
 import 'package:flutter_a_triade/app/services/user_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'cubit/login_cubit.dart';
@@ -7,8 +9,8 @@ import 'login_page.dart';
 class LoginModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => UserRepository()),
-        Bind((i) => UserService(i())),
+        Bind<IUserRepository>((i) => UserRepository()),
+        Bind<IUserService>((i) => UserService(i())),
         Bind((i) => LoginCubit(i())),
       ];
 
