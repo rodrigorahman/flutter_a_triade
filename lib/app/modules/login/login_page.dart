@@ -34,41 +34,16 @@ class LoginPageContent extends StatelessWidget {
   final TextEditingController loginEditController = TextEditingController();
   final TextEditingController passwordEditController = TextEditingController();
 
-  void _loginListener(context, state) {
-    if (state.loading) {
-      Loader.showLoader(context);
-    } else {
-      Loader.hideLoader(context);
-    }
-
-    state.authFailureOrSuccessOption.map((result) {
-      result.fold(
-        (failure) {
-          final errorMessage = failure.when(
-            notFound: () => 'Usuário ou senha inválidos',
-            serverError: (error) => error,
-            validateError: (validationErrors) => validationErrors.join('\n'),
-          );
-
-          Fluttertoast.showToast(
-            msg: errorMessage,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIosWeb: 2,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        },
-        (success) => Modular.to.pushNamedAndRemoveUntil('/', (_) => false),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listener: _loginListener,
+      listener: (context, state) {
+        if (state.loading) {
+          Loader.showLoader(context);
+        } else {
+          Loader.hideLoader(context);
+        }
+      },
       child: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width * .9,
