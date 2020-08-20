@@ -10,7 +10,7 @@ import 'modules/login/login_module.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => AuthCubit()),
+        Bind((i) => AuthCubit(), singleton: false),
       ];
 
   @override

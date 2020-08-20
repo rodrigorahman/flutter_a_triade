@@ -11,7 +11,7 @@ class LoginModule extends ChildModule {
   List<Bind> get binds => [
         Bind<IUserRepository>((i) => UserRepository()),
         Bind<IUserService>((i) => UserService(i())),
-        Bind((i) => LoginCubit(i())),
+        Bind((i) => LoginCubit(i()), singleton: false),
       ];
 
   @override
